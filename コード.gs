@@ -3,7 +3,27 @@ function notifyLINE() {
   var sheet = ss.getSheets()[0];
   var range = sheet.getDataRange();
   var values = range.getValues();
-  console.log(values);
+  
+  var message = 'おはようございます\n\n';
+  
+  var mondayMenu = values[0];
+  var tuesdayMenu = values[1];
+  var wednesdayMenu = values[2];
+  var thursdayMenu = values[3];
+  var fridayMenu = values[4];
+  var saturdayMenu = values[5];
+  var sundayMenu = values[6];
+  
+  var day = new Date().getDay();
+  
+  message += '${day}のトレーニングメニュー\n\n'.replace('${day}', mondayMenu[0]);
+  message += '・${menu1}\n'.replace('${menu1}', mondayMenu[1]);
+  message += '・${menu2}\n'.replace('${menu2}', mondayMenu[2]);
+  message += '・${menu3}\n\n'.replace('${menu3}', mondayMenu[3]);
+  message += '頑張りましょう';
+  
+  
+  
   
   
 
@@ -21,7 +41,7 @@ function notifyLINE() {
     'Authorization': 'Bearer '+ ACCESS_TOKEN
   };
   
-  var message = 'テスト';
+  
   
   var data = {
     to: USER_ID,
