@@ -16,18 +16,40 @@ function notifyLINE() {
   
   var day = new Date().getDay();
   
-  message += '${day}のトレーニングメニュー\n\n'.replace('${day}', mondayMenu[0]);
-  message += '・${menu1}\n'.replace('${menu1}', mondayMenu[1]);
-  message += '・${menu2}\n'.replace('${menu2}', mondayMenu[2]);
-  message += '・${menu3}\n\n'.replace('${menu3}', mondayMenu[3]);
-  message += '頑張りましょう';
+  function todayMenu(day) {
+    message += '${day}のトレーニングメニュー\n\n'.replace('${day}', day[0]);
+    message += '・${menu1}\n'.replace('${menu1}', day[1]);
+    message += '・${menu2}\n'.replace('${menu2}', day[2]);
+    message += '・${menu3}\n\n'.replace('${menu3}', day[3]);
+    message += '頑張りましょう';
+  }
   
   
   
+  switch (day) {
+    case 1:
+    todayMenu(mondayMenu);
+    break;
+    case 2:
+    todayMenu(tuesdayMenu);
+    break;
+    case 3:
+    todayMenu(wednesdayMenu);
+    break;
+    case 4:
+    todayMenu(thursdayMenu);
+    break;
+    case 5:
+    todayMenu(fridayMenu);
+    break;
+    case 6:
+    todayMenu(saturdayMenu);
+    break;
+    case 0:
+    todayMenu(sundayMenu);
+    break;
+  }
   
-  
-
-
 
 
   //以下LINEに通知するコード
