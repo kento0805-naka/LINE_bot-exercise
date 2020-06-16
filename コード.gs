@@ -21,7 +21,7 @@ function notifyLINE() {
     message += '・${menu1}\n'.replace('${menu1}', day[1]);
     message += '・${menu2}\n'.replace('${menu2}', day[2]);
     message += '・${menu3}\n\n'.replace('${menu3}', day[3]);
-    message += '頑張りましょう';
+    message += '頑張りましょう!';
   }
   
   
@@ -70,6 +70,12 @@ function confirmMessage() {
 
 }
 
+function doPost(e) {
+  var json = JSON.parse(e.postData.contents);
+  reply(json);
+}
+
+
 function LINE_API(msg) {
   const ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_TOKEN');
   var USER_ID = PropertiesService.getScriptProperties().getProperty('USER_ID'); 
@@ -101,3 +107,31 @@ function LINE_API(msg) {
   UrlFetchApp.fetch(url, options);
 
 }
+
+  function reply(data) {
+    const ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_TOKEN');
+    var USER_ID = PropertiesService.getScriptProperties().getProperty('USER_ID'); 
+    
+    var url = 'https://api.line.me/v2/bot/message/reply';
+    var headers = {
+      "Content-Type" : "application/json; charset=UTF-8",
+      'Authorization': 'Bearer ' + ACCESS_TOKEN,
+    };
+    
+    var postData = {
+      'replyToken': data.events[0].replyToken,
+      'messages': [{
+        'type': 'text',
+        'text': data.events[0].message.text
+      }]
+    };
+    
+    var options = {
+      'method': 'post',
+      'headers': headers,
+      'payload': JSON.stringify(postData)    
+    };
+    
+    UrlFetchApp.fetch(url, options);
+  
+  }
