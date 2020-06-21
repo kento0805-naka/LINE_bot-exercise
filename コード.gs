@@ -122,7 +122,7 @@ function LINE_API(msg) {
       'replyToken': data.events[0].replyToken,
       'messages': [{
         'type': 'text',
-        'text': data.events[0].message.text
+        'text': data.events[0].message.text + '!!'
       }]
     };
     
