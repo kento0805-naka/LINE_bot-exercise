@@ -22,6 +22,7 @@ function notifyLINE() {
     message += '・${menu2}\n'.replace('${menu2}', day[2]);
     message += '・${menu3}\n\n'.replace('${menu3}', day[3]);
     message += '頑張りましょう!';
+    message += '!!';
   }
   
   
